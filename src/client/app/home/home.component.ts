@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { ContactService, Contact } from '../shared/contact/index';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   newName: string = '';
   errorMessage: string;
-  names: any[] = [];
+  contacts: Contact[] = [];
 
   /**
    * Creates an instance of the HomeComponent with the injected
@@ -22,22 +22,22 @@ export class HomeComponent implements OnInit {
    *
    * @param {NameListService} nameListService - The injected NameListService.
    */
-  constructor(public nameListService: NameListService) {}
+  constructor(public contactService: ContactService) {}
 
   /**
    * Get the names OnInit
    */
   ngOnInit() {
-    this.getNames();
+    this.getItems();
   }
 
   /**
    * Handle the nameListService observable
    */
-  getNames() {
-    this.nameListService.get()
+  getItems() {
+    this.contactService.get()
       .subscribe(
-        names => this.names = names,
+        contacts => this.contacts = contacts,
         error => this.errorMessage = <any>error
       );
   }
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
    */
   addName(): boolean {
     // TODO: implement nameListService.post
-    this.names.push(this.newName);
+    //this.contacts.push(this.newName);
     this.newName = '';
     return false;
   }

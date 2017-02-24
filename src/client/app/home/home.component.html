@@ -1,10 +1,37 @@
-<p>Howdy! Here's a list of awesome computer scientists. Do you know any others? Add to the list yourself.</p>
+<div class="container-fluid">
+  <h2>External Contacts</h2>
+  <h4>Select the client contacts associated with this offer</h4>
 
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
-
-<ul>
-  <li *ngFor="let name of names">{{name}}</li>
-</ul>
+  <!--form (submit)="addName()">
+    <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
+    <button type="submit">Add</button>
+  </form -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Phone</th>
+          <th>Ext.</th>
+          <th>Fax</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts" class="table-row">
+          <td><input type="checkbox"></td>
+          <td>{{contact.type}}</td>
+          <td>{{contact.name}}</td>
+          <td>{{contact.title}}</td>
+          <td>{{contact.phone}}</td>
+          <td>{{contact.ext}}</td>
+          <td>{{contact.fax}}</td>
+          <td>{{contact.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

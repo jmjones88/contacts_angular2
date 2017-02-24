@@ -1,13 +1,7 @@
-:host {
-  display: block;
-  padding: 0 16px;
+h2 {
+  color: rgb(75,169,223)
 }
-
-input {
-  width: 250px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0 0 0 8px;
+.table-row {
+  text-align:center; 
+  vertical-align:middle;
 }

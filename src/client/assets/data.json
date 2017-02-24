@@ -1,6 +1,47 @@
 [
-  "Edsger Dijkstra",
-  "Donald Knuth",
-  "Alan Turing",
-  "Grace Hopper"
+  {
+    "type": "Executive",
+    "name": "Ann Brown",
+    "title": "CEO",
+    "phone": "(512) 456-5555",
+    "ext": "",
+    "fax": "(512) 456-5555",
+    "email": "Executive"
+  },
+  {
+    "type": "Inmar AR",
+    "name": "Mary Smith",
+    "title": "Lorem Ipsum",
+    "phone": "(512) 456-5555",
+    "ext": "",
+    "fax": "(512) 456-5555",
+    "email": "Inmar AR"
+  },
+  {
+    "type": "Executive",
+    "name": "Jonh Doe",
+    "title": "Dolor Sit",
+    "phone": "(512) 456-5555",
+    "ext": "",
+    "fax": "(512) 456-5555",
+    "email": "Executive"
+  },
+  {
+    "type": "Daily",
+    "name": "Jonh Doe",
+    "title": "Dolor sit amet",
+    "phone": "(512) 456-5555",
+    "ext": "",
+    "fax": "(512) 456-5555",
+    "email": "Daily"
+  },
+  {
+    "type": "Other",
+    "name": "Ann Brown",
+    "title": "Lorem Ipsum",
+    "phone": "(512) 456-5555",
+    "ext": "",
+    "fax": "(512) 456-5555",
+    "email": "Other"
+  }
 ]

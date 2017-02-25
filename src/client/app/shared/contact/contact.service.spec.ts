@@ -38,25 +38,25 @@ export function main() {
       contactService.clear();
       mockBackend.connections.subscribe((c: any) => {
         c.mockRespond(new Response(new ResponseOptions({ body: JSON.stringify([{
-            "type": "Executive",
-            "name": "Ann Brown",
-            "title": "CEO",
-            "phone": "(512) 456-5555",
-            "ext": "",
+            "type": 'Executive',
+            "name": 'Ann Brown',
+            "title": 'CEO',
+            "phone": '(512) 456-5555',
+            "ext": '',
             "fax": "(512) 456-5555",
             "email": "Executive"
-          }]) })));
+          }])})));
       });
 
       contactService.get().subscribe((data: any) => {
         let contact: Contact = new Contact(
-          "Executive",
-          "Ann Brown",
-          "CEO",
-          "(512) 456-5555",
-          "",
-          "(512) 456-5555",
-          "Executive")
+          'Executive',
+          'Ann Brown',
+          'CEO',
+          '(512) 456-5555',
+          '',
+          '(512) 456-5555',
+          'Executive');
         let contactArr = new Array(contact);
         expect(data).toEqual(contactArr);
       });

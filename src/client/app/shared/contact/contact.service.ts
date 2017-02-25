@@ -17,6 +17,9 @@ export class ContactService {
    */
   constructor(private http: Http) {}
 
+  /**
+   * Clears localStorage
+   */
   clear() {
     localStorage.clear();
   }
@@ -32,9 +35,8 @@ export class ContactService {
                       if(localStorage.getItem(this.localStorageKey)) {
                         let contactsString = localStorage.getItem(this.localStorageKey);
                         return JSON.parse(contactsString);
-                      }
-                      else {
-                        let json = res.json()
+                      } else {
+                        let json = res.json();
                         let contacts = new Array();
                         for(let item of json) {
                           let contact = new Contact(item.type,
@@ -59,8 +61,7 @@ export class ContactService {
   }
 
   removeItems(contacts: Contact[]) {
-    for(var i = contacts.length -1; i >= 0 ; i--)
-    {
+    for(var i = contacts.length -1; i >= 0 ; i--) {
       let contact = contacts[i];
       if(contact.isChecked) {
         contacts.splice(i, 1);

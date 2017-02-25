@@ -12,7 +12,6 @@ import { ContactService, Contact } from '../shared/contact/index';
 })
 export class HomeComponent implements OnInit {
 
-  newName: string = '';
   errorMessage: string;
   contacts: Contact[] = [];
   type: String;
@@ -25,11 +24,11 @@ export class HomeComponent implements OnInit {
 
   /**
    * Creates an instance of the HomeComponent with the injected
-   * NameListService.
+   * ContactService.
    *
-   * @param {NameListService} nameListService - The injected NameListService.
+   * @param {ContactService} contactService - The injected ContactService.
    */
-  constructor(public contactService: ContactService) {}
+  constructor(public contactService: ContactService) { }
 
   /**
    * Get the names OnInit
@@ -38,6 +37,9 @@ export class HomeComponent implements OnInit {
     this.getItems();
   }
 
+  /**
+  * Called when items are checked
+  */
   checkItem(e: any, contact: Contact) {
     contact.isChecked = e.target.checked;
   }
@@ -48,29 +50,24 @@ export class HomeComponent implements OnInit {
   getItems() {
     this.contactService.get()
       .subscribe(
-        contacts => this.contacts = contacts,
-        error => this.errorMessage = <any>error
+      contacts => this.contacts = contacts,
+      error => this.errorMessage = <any>error
       );
   }
 
   /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
+   * Removes an item from the contact list
    */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    //this.contacts.push(this.newName);
-    this.newName = '';
-    return false;
-  }
-
   removeItems() {
     let returnContactsArr = this.contactService.removeItems(this.contacts);
     this.contacts = returnContactsArr;
   }
 
+  /**
+   * Adds an entry to the contact list
+   */
   addEntry() {
-    let contact = new Contact(this.type, this.name, this.title, this.phone, this.ext, this.fax, this.email)
+    let contact = new Contact(this.type, this.name, this.title, this.phone, this.ext, this.fax, this.email);
     this.contacts.push(contact);
     this.contactService.add(this.contacts);
   }

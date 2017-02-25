@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ContactService } from './contact/contact.service';
 
 /**
@@ -13,9 +11,8 @@ import { ContactService } from './contact/contact.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
-    CommonModule, FormsModule, RouterModule]
+  declarations: [],
+  exports: [CommonModule, FormsModule, RouterModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

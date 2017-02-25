@@ -37,22 +37,22 @@ export function main() {
 
             mockContactService.returnValue = [
                   {
-                    "type": "Executive",
-                    "name": "Ann Brown",
-                    "title": "CEO",
-                    "phone": "(512) 456-5555",
-                    "ext": "",
-                    "fax": "(512) 456-5555",
-                    "email": "Executive"
+                    'type': 'Executive',
+                    'name': 'Ann Brown',
+                    'title': 'CEO',
+                    'phone': '(512) 456-5555',
+                    'ext': '',
+                    'fax': '(512) 456-5555',
+                    'email': 'Executive'
                   },
                   {
-                    "type": "Inmar AR",
-                    "name": "Mary Smith",
-                    "title": "Lorem Ipsum",
-                    "phone": "(512) 456-5555",
-                    "ext": "",
-                    "fax": "(512) 456-5555",
-                    "email": "Inmar AR"
+                    'type': 'Inmar AR',
+                    'name': 'Mary Smith',
+                    'title': 'Lorem Ipsum',
+                    'phone': '(512) 456-5555',
+                    'ext': '',
+                    'fax': '(512) 456-5555',
+                    'email': 'Inmar AR'
                   }];
 
             fixture.detectChanges();

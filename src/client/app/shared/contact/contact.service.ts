@@ -29,7 +29,6 @@ export class ContactService {
    * @return {string[]} The Observable for the HTTP request.
    */
   get(): Observable<Contact[]> {
-    debugger;
     return this.http.get('assets/data.json')
                     .map((res: Response) => {
                       if(localStorage.getItem(this.localStorageKey)) {

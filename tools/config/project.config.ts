@@ -19,13 +19,16 @@ export class ProjectConfig extends SeedConfig {
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     // this.TYPED_COMPILE_INTERVAL = 5;
 
+    this.ENABLE_SCSS = true;
+
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
       {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
       {src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs'},
-      {src: 'bootstrap/dist/css/bootstrap.min.css', inject: true}, // inject into css section
+      {src: 'bootstrap/dist/css/bootstrap.min.css', inject: true}, // inject into css section   
+      {src: 'font-awesome/css/font-awesome.min.css', inject: true} // inject into css section   
     ];
 
     // Add `local` third-party libraries to be injected/bundled.

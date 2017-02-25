@@ -1,16 +1,20 @@
-<div class="container-fluid">
-  <h2>External Contacts</h2>
-  <h4>Select the client contacts associated with this offer</h4>
-
-  <!--form (submit)="addName()">
-    <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
-    <button type="submit">Add</button>
-  </form -->
-  <div class="table-responsive">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 vcenter">
+      <h3>External Contacts</h3>
+    </div>
+    <div class="col-md-6 button-column">
+      <div class="button-container">
+        <button class="minimize fa fa-window-minimize" data-toggle="collapse" data-target="#table" aria-expanded="false" aria-hidden="true"></button>        &nbsp;&nbsp;Collapse
+      </div>
+    </div>
+  </div>
+  <p class="subheading">Select the client contacts associated with this offer</p>
+  <div class="table-responsive panel panel-default collapse in" id="table">
     <table class="table table-bordered table-hover table-striped">
       <thead>
-        <tr>
-          <th></th>
+        <tr class="heading">
+          <th class="check-column"></th>
           <th>Type</th>
           <th>Name</th>
           <th>Title</th>
@@ -22,7 +26,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let contact of contacts" class="table-row">
-          <td><input type="checkbox"></td>
+          <td class="check-column">
+            <input type="checkbox" (change)="checkItem($event, contact)">
+          </td>
           <td>{{contact.type}}</td>
           <td>{{contact.name}}</td>
           <td>{{contact.title}}</td>
@@ -34,4 +40,43 @@
       </tbody>
     </table>
   </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-danger" (click)="removeItems()">Delete Checked Entries</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="add-entry">Add an Entry</h3>
+    </div>
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="type">Type</label>
+      <input [(ngModel)]="type" id="type" type="text" name="type" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input [(ngModel)]="name" type="text" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input [(ngModel)]="title" type="text" name="title" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input [(ngModel)]="phone" type="text" name="phone" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Ext.</label>
+      <input [(ngModel)]="ext" type="text" name="ext" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Fax</label>
+      <input [(ngModel)]="fax" type="text" name="fax" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input [(ngModel)]="email" type="text" name="email" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addEntry();">Add Entry</button>
+  </form>
 </div>

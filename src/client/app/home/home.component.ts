@@ -15,6 +15,13 @@ export class HomeComponent implements OnInit {
   newName: string = '';
   errorMessage: string;
   contacts: Contact[] = [];
+  type: String;
+  name: String;
+  title: String;
+  phone: String;
+  ext: String;
+  fax: String;
+  email: String;
 
   /**
    * Creates an instance of the HomeComponent with the injected
@@ -31,8 +38,12 @@ export class HomeComponent implements OnInit {
     this.getItems();
   }
 
+  checkItem(e: any, contact: Contact) {
+    contact.isChecked = e.target.checked;
+  }
+
   /**
-   * Handle the nameListService observable
+   * Handle the contactService observable
    */
   getItems() {
     this.contactService.get()
@@ -51,6 +62,17 @@ export class HomeComponent implements OnInit {
     //this.contacts.push(this.newName);
     this.newName = '';
     return false;
+  }
+
+  removeItems() {
+    let returnContactsArr = this.contactService.removeItems(this.contacts);
+    this.contacts = returnContactsArr;
+  }
+
+  addEntry() {
+    let contact = new Contact(this.type, this.name, this.title, this.phone, this.ext, this.fax, this.email)
+    this.contacts.push(contact);
+    this.contactService.add(this.contacts);
   }
 
 }

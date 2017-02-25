@@ -75,19 +75,6 @@ $ npm run e2e.live
 ```
 You can learn more about [Protractor Interactive Mode here](https://github.com/angular/protractor/blob/master/docs/debugging.md#testing-out-protractor-interactively)
 
-# Table of Contents
-
-- [Introduction](#introduction)
-- [How to start](#how-to-start)
-- [Table of Content](#table-of-content)
-- [Configuration](#configuration)
-- [Environment Configuration](#environment-configuration)
-- [Tools documentation](#tools-documentation)
-- [How to extend?](#how-to-extend)
-- [Running tests](#running-tests)
-- [Examples](#examples)
-- [License](#license)
-
 # Configuration
 
 Default application server configuration

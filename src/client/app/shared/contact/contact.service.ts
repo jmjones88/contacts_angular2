@@ -9,7 +9,7 @@ import { Contact } from './model/contact';
  */
 @Injectable()
 export class ContactService {
-
+  localStorageKey: string = "contacts";
   /**
    * Creates a new ContactService with the injected Http.
    * @param {Http} http - The injected Http.
@@ -17,29 +17,56 @@ export class ContactService {
    */
   constructor(private http: Http) {}
 
+  clear() {
+    localStorage.clear();
+  }
+
   /**
    * Returns an Observable for the HTTP GET request for the JSON resource.
    * @return {string[]} The Observable for the HTTP request.
    */
   get(): Observable<Contact[]> {
+    debugger;
     return this.http.get('assets/data.json')
                     .map((res: Response) => {
-                      let json = res.json()
-                      let contacts = new Array();
-                      for(let item of json) {
-                        let contact = new Contact(item.type,
-                        item.name,
-                        item.title,
-                        item.phone,
-                        item.ext,
-                        item.fax,
-                        item.email);
-                        contacts.push(contact);
+                      if(localStorage.getItem(this.localStorageKey)) {
+                        let contactsString = localStorage.getItem(this.localStorageKey);
+                        return JSON.parse(contactsString);
                       }
-                      return contacts;
+                      else {
+                        let json = res.json()
+                        let contacts = new Array();
+                        for(let item of json) {
+                          let contact = new Contact(item.type,
+                          item.name,
+                          item.title,
+                          item.phone,
+                          item.ext,
+                          item.fax,
+                          item.email);
+                          contacts.push(contact);
+                        }
+                        localStorage.setItem(this.localStorageKey, JSON.stringify(contacts));
+                        return contacts;
+                      }
                     })
     //              .do(data => console.log('server data:', data))  // debug
                     .catch(this.handleError);
+  }
+
+  add(contacts: Contact[]) {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(contacts));
+  }
+
+  removeItems(contacts: Contact[]) {
+    for(var i = contacts.length -1; i >= 0 ; i--)
+    {
+      let contact = contacts[i];
+      if(contact.isChecked) {
+        contacts.splice(i, 1);
+      }
+    }
+    return contacts;
   }
 
   /**

@@ -4,7 +4,7 @@ import { MockBackend } from '@angular/http/testing';
 
 import { Observable } from 'rxjs/Observable';
 
-import { ContactService } from './contact.service';
+import { ContactService, Contact } from './index';
 
 export function main() {
   describe('Contact Service', () => {
@@ -31,16 +31,34 @@ export function main() {
       expect(TestBed.get(ContactService).get()).toEqual(jasmine.any(Observable));
     }));
 
-    it('should resolve to list of names when get called', async(() => {
-      let nameListService = TestBed.get(ContactService);
-      let mockBackend = TestBed.get(MockBackend);
+    it('should resolve to a contact when get called', async(() => {
 
+      let contactService = TestBed.get(ContactService);
+      let mockBackend = TestBed.get(MockBackend);
+      contactService.clear();
       mockBackend.connections.subscribe((c: any) => {
-        c.mockRespond(new Response(new ResponseOptions({ body: '["Dijkstra", "Hopper"]' })));
+        c.mockRespond(new Response(new ResponseOptions({ body: JSON.stringify([{
+            "type": "Executive",
+            "name": "Ann Brown",
+            "title": "CEO",
+            "phone": "(512) 456-5555",
+            "ext": "",
+            "fax": "(512) 456-5555",
+            "email": "Executive"
+          }]) })));
       });
 
-      nameListService.get().subscribe((data: any) => {
-        expect(data).toEqual(['Dijkstra', 'Hopper']);
+      contactService.get().subscribe((data: any) => {
+        let contact: Contact = new Contact(
+          "Executive",
+          "Ann Brown",
+          "CEO",
+          "(512) 456-5555",
+          "",
+          "(512) 456-5555",
+          "Executive")
+        let contactArr = new Array(contact);
+        expect(data).toEqual(contactArr);
       });
     }));
   });

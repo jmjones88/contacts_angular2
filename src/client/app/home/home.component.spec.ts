@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { HomeComponent } from './home.component';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { ContactService } from '../shared/contact/index';
 
 export function main() {
   describe('Home component', () => {
@@ -18,7 +18,7 @@ export function main() {
         imports: [FormsModule],
         declarations: [HomeComponent],
         providers: [
-          { provide: NameListService, useValue: new MockNameListService() }
+          { provide: ContactService, useValue: new MockContactService() }
         ]
       });
 
@@ -32,38 +32,60 @@ export function main() {
             let fixture = TestBed.createComponent(HomeComponent);
             let homeInstance = fixture.debugElement.componentInstance;
             let homeDOMEl = fixture.debugElement.nativeElement;
-            let mockNameListService = <MockNameListService>fixture.debugElement.injector.get(NameListService);
-            let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();
+            let mockContactService = <MockContactService>fixture.debugElement.injector.get(ContactService);
+            let contactServiceSpy = spyOn(mockContactService, 'get').and.callThrough();
 
-            mockNameListService.returnValue = ['1', '2', '3'];
+            mockContactService.returnValue = [
+                  {
+                    "type": "Executive",
+                    "name": "Ann Brown",
+                    "title": "CEO",
+                    "phone": "(512) 456-5555",
+                    "ext": "",
+                    "fax": "(512) 456-5555",
+                    "email": "Executive"
+                  },
+                  {
+                    "type": "Inmar AR",
+                    "name": "Mary Smith",
+                    "title": "Lorem Ipsum",
+                    "phone": "(512) 456-5555",
+                    "ext": "",
+                    "fax": "(512) 456-5555",
+                    "email": "Inmar AR"
+                  }];
 
             fixture.detectChanges();
 
-            expect(homeInstance.nameListService).toEqual(jasmine.any(MockNameListService));
-            expect(homeDOMEl.querySelectorAll('li').length).toEqual(3);
-            expect(nameListServiceSpy.calls.count()).toBe(1);
+            expect(homeInstance.contactService).toEqual(jasmine.any(MockContactService));
+            expect(homeDOMEl.querySelectorAll('tr').length).toEqual(3);
+            expect(contactServiceSpy.calls.count()).toBe(1);
 
-            homeInstance.newName = 'Minko';
-            homeInstance.addName();
+            homeInstance.name = 'Minko';
+            homeInstance.title = 'Minko';
+            homeInstance.addEntry();
 
             fixture.detectChanges();
 
-            expect(homeDOMEl.querySelectorAll('li').length).toEqual(4);
-            expect(homeDOMEl.querySelectorAll('li')[3].textContent).toEqual('Minko');
+            expect(homeDOMEl.querySelectorAll('tr').length).toEqual(4);
           });
 
       }));
   });
 }
 
-class MockNameListService {
+class MockContactService {
 
-  returnValue: string[];
+  returnValue: any[];
 
   get(): Observable<string[]> {
     return Observable.create((observer: any) => {
       observer.next(this.returnValue);
       observer.complete();
     });
+  }
+
+  add() {
+    //A stub function
   }
 }
